@@ -1,18 +1,8 @@
-from bs4 import BeautifulSoup
-import requests
+from Channel.channel import Channel
 
-try:
-    url = requests.get('https://www.youtube.com/feeds/videos.xml?channel_id=UCrG27KDq7eW4YoEOYsalU9g')
-    # The channel : https://www.youtube.com/@NevsinMenguofficial
-except requests.exceptions.RequestException as err:
-    print("\nAn error has occured. Please nake sure the link is valid.\n")
-    raise SystemExit(err)
+channel_name = input("Enter a Youtube channel name: ")
 
-soup = BeautifulSoup(url.content, 'xml')
-entries = soup.find_all('entry')
-
-for entry in entries:
-    title = entry.title.text
-    pDate = entry.published.text.split(sep='T')[0]
-    link = entry.link['href']
-    print(f"\nTitle: {title}\n\nPublished on: {pDate}\nVideo Link: {link}\n\n---------------------")
+channel = Channel(channel_name)
+channel_url = channel.getUrl()
+channel_id = channel.getChannelId(channel_url)
+channel.getMainPageVideos(channel_url, channel_id)
