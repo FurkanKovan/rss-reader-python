@@ -43,9 +43,3 @@ class Channel:
             print(
                 f"\nTitle: {title}\n\nPublished on: {pDate}\nVideo Link: {link}\n\n---------------------"
             )
-
-
-# url = requests.get('https://www.youtube.com/@CircleToonsHD')
-# soup = BeautifulSoup(url.content, 'html.parser')
-# channel_id = soup.find('meta', attrs={'itemprop':'channelId'}).get('content')
-# print(channel_id)
